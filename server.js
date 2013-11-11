@@ -3,8 +3,8 @@ var ejs = require('ejs');
 var app = express();
 var twitterAPI = require('node-twitter-api');
 var twitter = new twitterAPI({
-	consumerKey: 'HGOvd84clRvWaiGLVfsdpA',
-	consumerSecret: '2BKlskG82sOKCa0zkXkZ1gSsyxYbgj96lOhkdcHk',
+	consumerKey: '',
+	consumerSecret: '',
 	callback: ''
 	
 });
