@@ -5,7 +5,9 @@
   "dependencies": {
     "express": "latest",
     "ejs": "latest",
-    "node-twitter-api": "latest", 
+    "node-twitter-api": "latest",
+    "knex": "latest",
+    "sqlite3": "latest",
     "bookshelf": "latest",  
     "sentiment": "latest"
   },

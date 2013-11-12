@@ -8,12 +8,31 @@ var twitter = new twitterAPI({
 	callback: ''
 	
 });
-twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
+var myRequestToken = '';
+var myRequestTokenSecret='';
+var twitterRequest = twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
 	if (error){
-		
-});
+		console.log("Error getting OAuth request token: " + error);
+	} else {
+		myRequestToken = requestToken;
+		myRequestTokenSecret = requestTokenSecret;
+	}
+}
+);
 var analyze = require('sentiment').analyze;
-var mymodel = require('bookshelf');
+var bookshelf = require('bookshelf');
+
+var sqlite3 = bookshelf.initialize({
+	client: 'sqlite3',
+	connection: {
+		host : '127.0.0.1',
+		charset: 'utf8'
+	}
+});
+
+var User = sqlite3.Model.extend({
+	tablename: 'HashQueries';	
+});
 
 
 // handle posts in express
