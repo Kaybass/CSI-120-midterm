@@ -26,5 +26,5 @@ app.post('/twittergrab', function(req, res){
     
     userData = userQuery; //just for kicks
     res.contentType('json');
-    res.send(userData);
+    res.json(userData);
 });
