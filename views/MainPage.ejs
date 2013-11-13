@@ -1,0 +1,41 @@
+<!Doctype html>
+<html>
+<head>
+<script type="application/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+  
+    
+</head>
+<body>
+Yo
+<button id="submit">Results!</button>  
+    
+    
+<script type=text/javascript>
+var FormData = { mydata: "iscrazy",
+moredata: "isnuts" };
+$(document).ready(function() {    
+    $("#submit").click(function(){
+        $.ajax({
+            url: '/twittergrab',
+            type: "POST",
+            dataType: "json",
+            data: FormData,
+            contentType: "application/json",
+            success: function(data) {
+                //need format data json object into output
+                $("#submit").after(data.mydata);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });
+        
+        $.ajax({
+            //ajax request for reddit api
+        });
+        
+    });
+});
+</script>
+</body>
+</html>
