@@ -1,6 +1,5 @@
 app.post('/twittergrab', function(req, res){
     
-    
     var twitter = new twitterAPI({
         consumerKey: twitterInfo.consumerKey,
         consumerSecret: twitterInfo.consumerSecret,
@@ -17,9 +16,11 @@ app.post('/twittergrab', function(req, res){
             myRequestTokenSecret = requestTokenSecret;
         }
     });
-        //enter hash tags into database
+        //enter hash tags into databsase
         //get twitter requests from api with req.body
+    console.log(req.body);
     var userQuery = req.body;
+    console.log(userQuery);
         
  //userQuery.sentimentScore = analyze(userQuery.area).score;
         //return 100 twitter posts into an array TwitterPosts inside one json object, userData

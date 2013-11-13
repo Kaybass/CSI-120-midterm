@@ -8,31 +8,66 @@
 <body>
 Yo
 <button id="submit">Results!</button>  
-    
+<form id="myForm" method="post">
+<label for="name">Hash Tag:</label><input type="text" id="SampleHash" name="SampleHash" value="#dude"><br>
+<label for="oldest">Oldest:</label><input type="date" id="oldest" name="oldest"><br>
+<label for="latest">Latest:</label><input type="date" id="latest" name="latest"><br>
+<label for="number">Number:</label><input type="range" id="number" name="number" value=10 min="0" max="100"><span id="rangeNum">10</span><br>
+<label for="distance">Distance(mi):</label><input type="number" id="distance" name="distance" value="10"><br>
+<input type="hidden" id="latitude" name="latitude" value=0>
+<input type="hidden" id="longitude" name="longitude" value=0>
+</form>
+<div></div>
     
 <script type=text/javascript>
-var FormData = { mydata: "iscrazy", moredata: "isnuts" };
-$(document).ready(function() {    
+var myData = {
+    name : "Joshua Lucier",
+    rating: "10/10"
+
+};
+
+function SubmitPosition(pos){
+          $("#latitude").val(pos.coords.latitude);
+          $("#longitude").val(pos.coords.longitude);
+          var mydata = $("#myForm").serialize();
+            $.ajax({
+                url: '/twittergrab',
+                type: "post",
+                datatype: "json",
+                data: mydata,
+                success: function(data) {
+                    //need format data json object into output
+                    $("div").append(data.thedude);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('error ' + textStatus + " " + errorThrown + ";");
+                }
+            });   
+            /*
+            $.ajax({
+                //ajax request for reddit api
+            });
+            */
+            
+        }
+
+$(document).ready(function() {
     $("#submit").click(function(){
-        $.ajax({
-            url: '/twittergrab',
-            type: "POST",
-            dataType: "json",
-            data: FormData,
-            contentType: "application/json; charset=utf-8",
-            success: function(data) {
-                //need format data json object into output
-                $("#submit").after(data);
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('error ' + textStatus + " " + errorThrown);
-            }
-        });
         /*
-        $.ajax({
-            //ajax request for reddit api
-        });
+        $.post("/twittergrab",$("myForm").serialize(),function(data){
+            $("div").append(data.name);
+        },"json");
         */
+  
+        if (navigator.geolocation)
+        {
+        navigator.geolocation.getCurrentPosition(SubmitPosition);
+        }
+        else{x.innerHTML="Geolocation is not supported by this browser.";}
+        
+    });
+    $("#number").click(function(){
+        $("#rangeNum").text($("#number").val());
     });
 });
 </script>
