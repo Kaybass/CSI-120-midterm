@@ -11,7 +11,7 @@ app.post('/twittergrab', function(req, res){
     var myRequestTokenSecret='';
     var twitterRequest = twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
         if (error) {
-            //console.log("Error getting OAuth request token: " + error);
+            console.log("Error getting OAuth request token: " + error);
         } else {
             myRequestToken = requestToken;
             myRequestTokenSecret = requestTokenSecret;
