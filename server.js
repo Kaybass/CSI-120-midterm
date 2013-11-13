@@ -17,8 +17,7 @@ User = sqlite3.Model.extend({
 	tablename: 'HashQueries'	
 });
 
-require('./AuthenticationSettings.js');
-require('./TwitterApiQuery.js');
+
 
 // handle posts in express
 app.use(express.bodyParser());
@@ -29,12 +28,15 @@ app.use('/', express.static(__dirname + '/public'));
 // use Embedded Javascript templating
 app.engine('html', ejs.renderFile);
 
+require('./AuthenticationSettings.js');
+require('./TwitterApiQuery.js');
 
 app.get('/',function(req,res){
     
     res.render('MainPage.ejs');
 
 });
+
 
 //seetwitterapi for ajax response
 

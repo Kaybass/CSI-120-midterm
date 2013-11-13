@@ -11,8 +11,7 @@ Yo
     
     
 <script type=text/javascript>
-var FormData = { mydata: "iscrazy",
-moredata: "isnuts" };
+var FormData = { mydata: "iscrazy", moredata: "isnuts" };
 $(document).ready(function() {    
     $("#submit").click(function(){
         $.ajax({
@@ -20,20 +19,20 @@ $(document).ready(function() {
             type: "POST",
             dataType: "json",
             data: FormData,
-            contentType: "application/json",
+            contentType: "application/json; charset=utf-8",
             success: function(data) {
                 //need format data json object into output
-                $("#submit").after(data.mydata);
+                $("#submit").after(data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('error ' + textStatus + " " + errorThrown);
             }
         });
-        
+        /*
         $.ajax({
             //ajax request for reddit api
         });
-        
+        */
     });
 });
 </script>

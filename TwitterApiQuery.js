@@ -25,6 +25,5 @@ app.post('/twittergrab', function(req, res){
         //return 100 twitter posts into an array TwitterPosts inside one json object, userData
     
     userData = userQuery; //just for kicks
-    res.contentType('json');
     res.json(userData);
 });
