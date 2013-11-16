@@ -37,7 +37,7 @@ function SubmitPosition(pos){
                 data: mydata,
                 success: function(data) {
                     //need format data json object into output
-                    $("div").append(data.thedude);
+                    $("div").append(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log('error ' + textStatus + " " + errorThrown + ";");
@@ -52,7 +52,7 @@ function SubmitPosition(pos){
         }
 
 $(document).ready(function() {
-    $("#submit").click(function(){
+    $("#submit").mouseup(function(){
         /*
         $.post("/twittergrab",$("myForm").serialize(),function(data){
             $("div").append(data.name);

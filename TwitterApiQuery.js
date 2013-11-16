@@ -14,15 +14,15 @@ var twitter = new Twitter(config)
         oldest: req.body.oldest,
         latest: req.body.latest,
         number: req.body.number,
-        distance: req.body.distance,
+        distance: req.body.distance+'mi',
         latitude: req.body.latitude,
         longitude: req.body.longitude
 	};
     
 //query string for get request    
 var queryStringPath = "https://api.twitter.com/1.1/search/tweets.json"
-var queryString = encodeURIComponent("?q="+query.hash+"&geocode="+query.latitude+","+query.longitude+","+query.distance+"&count="+query.number+"&until="+query.latest+"&since="+query.oldest);
-
+var queryString = "?q="+encodeURIComponent(query.hash)+"&geocode="+encodeURIComponent(query.latitude)+","+encodeURIComponent(query.longitude)+","+encodeURIComponent(query.distance)+"&count="+encodeURIComponent(query.number)+"&until="+encodeURIComponent(query.latest)+"&since="+encodeURIComponent(query.oldest);
+/* twitter api authentication ewww
 //getting oauth2 token for access to the api  
 console.log("processing keys...");
 var cKey = encodeURIComponent(twitterInfo.consumerKey);  //uri encode
@@ -49,6 +49,7 @@ console.log("finished request prep...posting request");
 authPostReq.write(authPostData);
 authPostReq.end();
 console.log("finished request");
+*/
     //https://twitter.com/search?q=%23dude%20near%3A44.016274%2C-73.166653%20within%3A15mi%20since%3A2010-02-01%20until%3A2010-03-01&src=typd
 	//http.get()
     /* Twitter.js stuff.  Twitter.js sucks so far
@@ -75,12 +76,50 @@ console.log("finished request");
 	*/
         //enter hash tags into databsase
         //get twitter requests from api with req.body
-    var userQuery = req.body;
-    console.log(userQuery);
+    
+//USING OAUTH LIBRARY TO ACCESS TWITTER
+var oauth2req = new OAuth2(twitterInfo.consumerKey,twitterInfo.consumerSecret,'https://api.twitter.com/',null,'oauth2/token',null);
+var myTweets;
+oauth2req.getOAuthAccessToken('',{ 'grant_type': 'client_credentials' }, function(e, access_token){
+    console.log(access_token);
+    twitterToken=access_token;
+    
+    console.log("loading options..");
+    var twitterOptions = {
+        hostname: 'api.twitter.com',
+        path: queryStringPath+queryString,
+        headers: {
+            Authorization: 'Bearer ' + twitterToken
+        }
+    };
+    console.log(twitterOptions.path);
+    
+  
+    console.log("making request...");
+    https.get(twitterOptions,function(result){
+        var mybuffer;
+        result.setEncoding('utf8');
+        result.on('data', function(data){
+            console.log(data);
+            mybuffer = data;
+        });
+        result.on('end',function(){
+            console.log("parsing...");
+            myTweets = mybuffer;
+            console.log("parsed");
+        });
+        result.on('error',function(res){
+            consol.log(res);
+        });
+    });
+    
+});
+
+
+
         
  //userQuery.sentimentScore = analyze(userQuery.area).score;
         //return 100 twitter posts into an array TwitterPosts inside one json object, userData
     
-    userData = userQuery; //just for kicks
-    res.json(userData);
+    res.json(myTweets);
 });
