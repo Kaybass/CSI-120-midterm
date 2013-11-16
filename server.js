@@ -1,8 +1,9 @@
 express = require('express');
 http = require("http");
+https = require("https");
 ejs = require('ejs');
 app = express();
-twitterAPI = require('node-twitter-api');
+twitterAPI = require('twitter-js-client');
 analyze = require('sentiment').analyze;
 bookshelf = require('bookshelf');
 sqlite3 = bookshelf.initialize({
