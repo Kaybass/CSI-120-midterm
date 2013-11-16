@@ -79,8 +79,9 @@ console.log("finished request");
     
 //USING OAUTH LIBRARY TO ACCESS TWITTER
 var oauth2req = new OAuth2(twitterInfo.consumerKey,twitterInfo.consumerSecret,'https://api.twitter.com/',null,'oauth2/token',null);
-var myTweets;
+
 oauth2req.getOAuthAccessToken('',{ 'grant_type': 'client_credentials' }, function(e, access_token){
+    var myTweets;
     console.log(access_token);
     twitterToken=access_token;
     
@@ -100,18 +101,30 @@ oauth2req.getOAuthAccessToken('',{ 'grant_type': 'client_credentials' }, functio
         var mybuffer;
         result.setEncoding('utf8');
         result.on('data', function(data){
-            console.log(data);
             mybuffer = data;
         });
         result.on('end',function(){
             console.log("parsing...");
             myTweets = mybuffer;
             console.log("parsed");
+            console.log(myTweets);
         });
         result.on('error',function(res){
             consol.log(res);
         });
     });
+    
+ 
+    var myQuery = {
+       myTweetArray: []   
+    };
+    for(var i=0;i<parseInt(query.number);i++){
+        myQuery.myTweetArray[i] = { screenName: myTweets.statuses[i].user.screen_name, 
+        date: myTweets.statuses[i].created_at, profileImg: myTweets.statuses[i].user.profile_image_url, hashTags:  myTweets.statuses[i].hashtags,  message: myTweets.statuses[i].text, sentiment: analyze(myTweets.statuses[i].text)};      }
+    
+    
+    console.log(myQuery);
+    res.json(myQuery);
     
 });
 
@@ -121,5 +134,4 @@ oauth2req.getOAuthAccessToken('',{ 'grant_type': 'client_credentials' }, functio
  //userQuery.sentimentScore = analyze(userQuery.area).score;
         //return 100 twitter posts into an array TwitterPosts inside one json object, userData
     
-    res.json(myTweets);
 });

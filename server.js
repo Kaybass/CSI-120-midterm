@@ -4,7 +4,7 @@ https = require("https");
 ejs = require('ejs');
 app = express();
 OAuth2 = require('OAuth').OAuth2;
-analyze = require('sentiment').analyze;
+analyze = require('Sentimental').analyze;
 bookshelf = require('bookshelf');
 sqlite3 = bookshelf.initialize({
 	client: 'sqlite3',

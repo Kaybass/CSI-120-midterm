@@ -9,7 +9,7 @@
     "knex": "latest",
     "sqlite3": "latest",
     "bookshelf": "latest",  
-    "sentiment": "latest"
+    "Sentimental": "latest"
   },
   "engines": {
     "node": "0.10.13",

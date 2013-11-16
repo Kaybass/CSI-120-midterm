@@ -37,6 +37,7 @@ function SubmitPosition(pos){
                 data: mydata,
                 success: function(data) {
                     //need format data json object into output
+                    console.log(data);
                     $("div").append(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
