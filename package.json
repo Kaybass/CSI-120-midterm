@@ -10,6 +10,7 @@
     "sqlite3": "latest",
     "bookshelf": "latest",  
     "Sentimental": "latest"
+	"restler": "latest"
   },
   "engines": {
     "node": "0.10.13",
