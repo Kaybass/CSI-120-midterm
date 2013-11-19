@@ -25,6 +25,12 @@ var twitter = new Twitter(config)
         order: req.body.order
 	};
     
+//SQlite3
+var stmt = db.prepare("INSERT INTO searches VALUES (\""+query.SampleHash+"\",\""+Date()+"\")");
+stmt.finalize();
+    
+
+    
 //query string for get request    
 var queryStringPath = "https://api.twitter.com/1.1/search/tweets.json"
 var queryString = "?q="+encodeURIComponent(query.hash)+"&geocode="+encodeURIComponent(query.latitude)+","+encodeURIComponent(query.longitude)+","+encodeURIComponent(query.distance)+"&count="+encodeURIComponent(query.number)+"&until="+encodeURIComponent(query.latest)+"&since="+encodeURIComponent(query.oldest);
