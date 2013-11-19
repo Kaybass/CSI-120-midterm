@@ -14,6 +14,10 @@ Yo
 <label for="latest">Latest:</label><input type="date" id="latest" name="latest"><br>
 <label for="number">Number:</label><input type="range" id="number" name="number" value=10 min="0" max="100"><span id="rangeNum">10</span><br>
 <label for="distance">Distance(mi):</label><input type="number" id="distance" name="distance" value="10"><br>
+Sentiment: <select name="order" id="order" required>
+    <option value = 1>Highest to Lowest</option>
+    <option value = 2>Lowest to Highest</option>
+    </select>
 <input type="hidden" id="latitude" name="latitude" value=0>
 <input type="hidden" id="longitude" name="longitude" value=0>
 </form>

@@ -6,6 +6,7 @@
     "express": "latest",
     "ejs": "latest",
     "oauth": "latest",
+    "mtwitter":"latest",
     "knex": "latest",
     "sqlite3": "latest",
     "bookshelf": "latest",  

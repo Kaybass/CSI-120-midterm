@@ -5,6 +5,7 @@ ejs = require('ejs');
 app = express();
 OAuth2 = require('OAuth').OAuth2;
 analyze = require('Sentimental').analyze;
+Twitter = require('mtwitter');
 bookshelf = require('bookshelf');
 sqlite3 = bookshelf.initialize({
 	client: 'sqlite3',
