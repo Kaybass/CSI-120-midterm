@@ -5,19 +5,15 @@ ejs = require('ejs');
 app = express();
 OAuth2 = require('OAuth').OAuth2;
 analyze = require('Sentimental').analyze;
-bookshelf = require('bookshelf');
-sqlite3 = bookshelf.initialize({
-	client: 'sqlite3',
-	connection: {
-		host : '127.0.0.1',
-		charset: 'utf8'
-	}
-});
+Twitter = require('mtwitter');
+sqlite3 = require('sqlite3').verbose();
 
-User = sqlite3.Model.extend({
-	tablename: 'HashQueries'	
+//encapsulate array of parameters
+passedParams = [];
+process.argv.forEach(function(val,index,array){
+   console.log(index + ': ' + val);
+    passedParams[index] = val;
 });
-
 
 
 // handle posts in express
@@ -30,6 +26,7 @@ app.use('/', express.static(__dirname + '/public'));
 app.engine('html', ejs.renderFile);
 
 require('./AuthenticationSettings.js');
+require('./model.js');
 require('./TwitterApiQuery.js');
 
 app.get('/',function(req,res){

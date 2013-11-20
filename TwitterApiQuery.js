@@ -9,6 +9,11 @@ var config = {
 var twitter = new Twitter(config)
 */
 // using twitter api directly blech
+
+
+
+    
+
     var query = {
 		hash: req.body.SampleHash,
         oldest: req.body.oldest,
@@ -16,8 +21,15 @@ var twitter = new Twitter(config)
         number: req.body.number,
         distance: req.body.distance+'mi',
         latitude: req.body.latitude,
-        longitude: req.body.longitude
+        longitude: req.body.longitude,
+        order: req.body.order
 	};
+    
+//SQlite3
+var stmt = db.prepare("INSERT INTO searches VALUES (\""+query.SampleHash+"\",\""+Date()+"\")");
+stmt.finalize();
+    
+
     
 //query string for get request    
 var queryStringPath = "https://api.twitter.com/1.1/search/tweets.json"
@@ -78,10 +90,10 @@ console.log("finished request");
         //get twitter requests from api with req.body
     
 //USING OAUTH LIBRARY TO ACCESS TWITTER
-var oauth2req = new OAuth2(twitterInfo.consumerKey,twitterInfo.consumerSecret,'https://api.twitter.com/',null,'oauth2/token',null);
-
+/*var oauth2req = new OAuth2(twitterInfo.consumerKey,twitterInfo.consumerSecret,'https://api.twitter.com/',null,'oauth2/token',null);
+myTweets = {};
 oauth2req.getOAuthAccessToken('',{ 'grant_type': 'client_credentials' }, function(e, access_token){
-    var myTweets;
+    
     console.log(access_token);
     twitterToken=access_token;
     
@@ -98,16 +110,41 @@ oauth2req.getOAuthAccessToken('',{ 'grant_type': 'client_credentials' }, functio
   
     console.log("making request...");
     https.get(twitterOptions,function(result){
-        var mybuffer;
+        mybuffer = '';
         result.setEncoding('utf8');
         result.on('data', function(data){
-            mybuffer = data;
+            mybuffer = JSON.stringify(data);
+            //myTweets = data;
         });
         result.on('end',function(){
             console.log("parsing...");
-            myTweets = mybuffer;
+            myTweets = JSON.parse(mybuffer);
             console.log("parsed");
-            console.log(myTweets);
+            console.log(myTweets);    
+            var myQuery = {
+               myTweetArray: [], sentimentAvg : 0  
+            };
+            
+            /* testing
+            if(myTweets != {}){
+               for(var i=0;i<query.number;i++){
+                    myQuery.myTweetArray[i] = { screenName: myTweets.statuses[i].user.screen_name, 
+                        date: myTweets.statuses[i].created_at, profileImg: myTweets.statuses[i].user.profile_image_url, hashTags:  myTweets.statuses[i].entities.hashtags,  message: myTweets.statuses[i].text, sentiment: analyze(myTweets.statuses[i].text)};     
+                    myQuery.sentimentAvg = myQuery.myTweetArray[i].sentiment+myQuery.sentimentAvg;
+               } 
+               
+                myQuery.sentimentAvg = myQuery.sentimentAvg/query.number;
+            } else {
+                myQuery = { error: "No tweets" };
+            } 
+    
+
+            
+            myQuery=myTweets; //testing
+            console.log(myQuery);
+            res.json(myQuery);
+            
+            
         });
         result.on('error',function(res){
             consol.log(res);
@@ -115,22 +152,59 @@ oauth2req.getOAuthAccessToken('',{ 'grant_type': 'client_credentials' }, functio
     });
     
  
-    var myQuery = {
-       myTweetArray: []   
-    };
-    for(var i=0;i<parseInt(query.number);i++){
-        myQuery.myTweetArray[i] = { screenName: myTweets.statuses[i].user.screen_name, 
-        date: myTweets.statuses[i].created_at, profileImg: myTweets.statuses[i].user.profile_image_url, hashTags:  myTweets.statuses[i].hashtags,  message: myTweets.statuses[i].text, sentiment: analyze(myTweets.statuses[i].text)};      }
-    
-    
-    console.log(myQuery);
-    res.json(myQuery);
-    
+
+  
 });
 
+*/
 
+//mtwitter api attempt
+params = {
+    q: query.hash,
+    geocode: query.latitude+','+query.longitude+','+query.distance,
+    since: query.oldest,
+    until: query.latest,
+    count: query.number    
+    };
+    
+twitter = new Twitter({
+consumer_key: twitterInfo.consumerKey,
+consumer_secret: twitterInfo.consumerSecret,
+application_only: true    
+});
 
-        
+twitter.get('search/tweets',params,function(err, myTweets) {
+  console.log(err, myTweets);
+    var myQuery = {
+        myTweetArray: [], sentimentAvg : 0  
+    };
+    if(myTweets != {}){
+        for(var i=0;i<query.number;i++){
+            myQuery.myTweetArray[i] = { screenName: myTweets.statuses[i].user.screen_name, date: myTweets.statuses[i].created_at, profileImg: myTweets.statuses[i].user.profile_image_url, hashTags:  myTweets.statuses[i].entities.hashtags,  message: myTweets.statuses[i].text, sentiment: analyze(myTweets.statuses[i].text)};     
+            myQuery.sentimentAvg = myQuery.myTweetArray[i].sentiment.score + parseInt(myQuery.sentimentAvg);
+            } 
+        myQuery.sentimentAvg = myQuery.sentimentAvg/query.number;
+    } else {
+        myQuery = { error: "No tweets" };
+    }
+    
+    function sortFunction(a,b){
+        if (query.order==2) {
+            return a.sentiment.score - b.sentiment.score;
+        }
+        else if (query.order==1) {
+            return b.sentiment.score - a.sentiment.score;
+        }
+    } 
+            
+    myQuery.myTweetArray = myQuery.myTweetArray.sort(sortFunction);
+    
+    
+
+    res.json(myQuery);
+});
+
+    
  //userQuery.sentimentScore = analyze(userQuery.area).score;
         //return 100 twitter posts into an array TwitterPosts inside one json object, userData
     
