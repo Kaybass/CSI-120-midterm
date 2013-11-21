@@ -28,10 +28,12 @@ app.engine('html', ejs.renderFile);
 require('./AuthenticationSettings.js');
 require('./model.js');
 require('./TwitterApiQuery.js');
+require('./data.js');
+
 
 app.get('/',function(req,res){
     
-    res.render('MainPage.ejs');
+    res.render('MainPage.ejs',searchData);
 
 });
 
