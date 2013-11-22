@@ -70,9 +70,13 @@ function SubmitPosition(pos){
                 success: function(data) {
                     //need format data json object into output
                     console.log(data);
-                    $("#tweets").text("Here's Your tweets...");
-                    for(i=0;i<data.myTweetArray.length;i++){
-                        $("#tweets").append(data.myTweetArray[i].message+"<br>");
+                    $("#tweets").html("Here's Your tweets... <br>");
+                    if(data.error){
+                        $("#tweets").append(data.error);
+                    } else{
+                        for(i=0;i<data.myTweetArray.length;i++){
+                            $("#tweets").append(data.myTweetArray[i].message+"<br>");
+                        }
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
