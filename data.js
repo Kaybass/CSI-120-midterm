@@ -30,42 +30,64 @@ function modeString(array)
     return maxEl;
 }
 
-
+function filterForString(element, index, array){
+    return (element!=modeString(array));
+};
 
 function topTen(){
     i=0;
     dataArray = [];
     searchData.topTen[i]=modeString(searchData.allData);
     console.log(searchData.allData);
-    dataArray = searchData.allData.filter(modeString(searchData.allData));
+    dataArray = searchData.allData.filter(filterForString);
     for(i=1;i<10;i++){
         searchData.topTen[i]=modeString(dataArray);
+        dataArray = dataArray.filter(filterForString);
     }
+    myTopTen = { topTen: searchData.topTen };
 }
 
-now = '';
-
-db.serialize(function(){
-    db.each("select QUERY as QUERY from searches", function(err,row){
+function foo(){
        console.log(row.QUERY);
        searchData.allData[i]=row.QUERY;
-       i++
-       console.log("The most common is:" + modeString(searchData.allData));
-    },function(err,rows){
-        console.log(err,rows); 
-        i=0;
-        dataArray = [];
-        searchData.topTen[i]=modeString(searchData.allData);
-        consol.log("Alldata data");
-        console.log(searchData.allData);
-        dataArray = searchData.allData.filter(modeString(searchData.allData));
-        for(i=1;i<10;i++){
-            searchData.topTen[i]=modeString(dataArray);
+       i++;
+       console.log("The most common is:" + modeString(searchData.allData));   
+}
+now = '';
+myRows=0;
+
+db.serialize(function(){
+    db.all("select QUERY as QUERY from searches", function(err,rows){
+       for(i=0;i<rows.length;i++){
+            searchData.allData[i]=rows[i].QUERY;
         }
-    });
+    }
+);
 });
+setTimeout(function(){
+    topTen();
+    setInterval(function(){
+        topTen();
+    },15000);
+},5000);
+setInterval(function(){
+db.serialize(function(){
+    db.all("select QUERY as QUERY from searches", function(err,rows){
+       for(i=0;i<rows.length;i++){
+            searchData.allData[i]=rows[i].QUERY;
+        }
+    }
+);
+});
+},15000);
+
 
 //console.log(searchData.topTen);
-
-
+setTimeout(function(){
+    console.log(searchData.topTen);
+app.get('/topten', function(req, res){
+    console.log("sending myTopTen");
+    res.json(myTopTen);
+});
+},10000);
 //}

@@ -6,6 +6,7 @@
     
 </head>
 <body>
+<div id="top10"></div>
 Yo
 <button id="submit">Results!</button>  
 <form id="myForm" method="post">
@@ -30,7 +31,6 @@ var myData = {
     rating: "10/10"
 
 };
-
 function SubmitPosition(pos){
           $("#latitude").val(pos.coords.latitude);
           $("#longitude").val(pos.coords.longitude);
@@ -58,6 +58,37 @@ function SubmitPosition(pos){
         }
 
 $(document).ready(function() {
+    $("#top10").text("Loading top 10...");
+    $.ajax({
+        url: '/topten',
+                type: "get",
+                datatype: "json",
+                success: function(data) {
+                    //need format data json object into output
+                    console.log(data);
+                    $("#top10").text(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('error ' + textStatus + " " + errorThrown + ";");
+                }
+    });
+    setInterval(function(){
+    $.ajax({
+        url: '/topten',
+                type: "get",
+                datatype: "json",
+                success: function(data) {
+                    //need format data json object into output
+                    console.log(data);
+                    $("#top10").text(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('error ' + textStatus + " " + errorThrown + ";");
+                }
+    });
+    },10000);
+    
+    
     $("#submit").mouseup(function(){
         /*
         $.post("/twittergrab",$("myForm").serialize(),function(data){
@@ -72,6 +103,8 @@ $(document).ready(function() {
         else{x.innerHTML="Geolocation is not supported by this browser.";}
         
     });
+
+    
     
     $("#number").click(function(){
         $("#rangeNum").text($("#number").val());
