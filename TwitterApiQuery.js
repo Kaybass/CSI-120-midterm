@@ -182,7 +182,7 @@ twitter.get('search/tweets',params,function(err, myTweets) {
     var myQuery = {
         myTweetArray: [], sentimentAvg : 0  
     };
-    if(myTweets.statuses[0].user){
+    if(myTweets){
         for(var i=0;i<query.number;i++){
             myQuery.myTweetArray[i] = { screenName: myTweets.statuses[i].user.screen_name, date: myTweets.statuses[i].created_at, profileImg: myTweets.statuses[i].user.profile_image_url, hashTags:  myTweets.statuses[i].entities.hashtags,  message: myTweets.statuses[i].text, sentiment: analyze(myTweets.statuses[i].text)};     
             myQuery.sentimentAvg = myQuery.myTweetArray[i].sentiment.score + parseInt(myQuery.sentimentAvg);
@@ -200,9 +200,10 @@ twitter.get('search/tweets',params,function(err, myTweets) {
             return b.sentiment.score - a.sentiment.score;
         }
     } 
-            
-    myQuery.myTweetArray = myQuery.myTweetArray.sort(sortFunction);
     
+    if(myTweets){
+    myQuery.myTweetArray = myQuery.myTweetArray.sort(sortFunction);
+    }
     
 
     res.json(myQuery);
