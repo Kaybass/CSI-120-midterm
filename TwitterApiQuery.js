@@ -14,7 +14,7 @@ var twitter = new Twitter(config)
 
     
 
-    var query = {
+var query = {
 		hash: req.body.SampleHash,
         oldest: req.body.oldest,
         latest: req.body.latest,

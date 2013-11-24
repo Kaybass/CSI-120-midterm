@@ -25,7 +25,7 @@ Sentiment: <select name="order" id="order" required>
 Sentiment: <input type="dropdown" name="sentiment" id="inputtext" placeholder="1-1000" min="1" max="1000" required/>
 </form>
 <div id="tweets"></div>
-    
+<div id="reddit"></div>    
 <script type=text/javascript>
 var myData = {
     name : "Joshua Lucier",
@@ -83,11 +83,30 @@ function SubmitPosition(pos){
                     console.log('error ' + textStatus + " " + errorThrown + ";");
                 }
             });   
-            /*
+            
             $.ajax({
+                 url: '/redditgrab',
+                type: "post",
+                datatype: "json",
+                data: mydata,
+                success: function(data) {
+                    //need format data json object into output
+                    console.log(data);
+                    $("#tweets").html("Here's Your tweets... <br>");
+                    if(data.error){
+                        $("#reddit").append(data.error);
+                    } else{
+                        for(i=0;i<data.redditArray.length;i++){
+                            $("#reddit").append(data.redditArray[i].message+"<br>");
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('error ' + textStatus + " " + errorThrown + ";");
+                }
                 //ajax request for reddit api
             });
-            */
+            
             
         }
 

@@ -30,6 +30,7 @@ require('./AuthenticationSettings.js');
 require('./model.js');
 require('./TwitterApiQuery.js');
 require('./data.js');
+require('./RedditSearch.js');
 
 
 app.get('/',function(req,res){

@@ -14,11 +14,32 @@ function getSearchJSON(req){
 		+ req 
 		+ "&restrict_sr=off&sort=relevance&t=all";
 	var jace = new array(5);
+    console.log("making reddit query");
 	restler.get(url).on('complete',function(tapkek){
 		for(var i = 0; i < 5; i++){
 			jace[i] = tapkek.data.children[i].data;
+        }
 	});
-	
+	console.log("completed reddit query");
 	return jace;
 }
 //getSearchJSON("maobama");
+                        
+app.post('/redditgrab', function(req, res){
+
+    var query = {
+		hash: req.body.SampleHash,
+        oldest: req.body.oldest,
+        latest: req.body.latest,
+        number: req.body.number,
+        distance: req.body.distance+'mi',
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        order: req.body.order
+	};
+    
+var redditReturn = { redditArray: [] };
+redditReturn.redditArray = getSearchJSON(query.hash);
+res.json(redditReturn);
+
+});
