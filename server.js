@@ -35,7 +35,7 @@ require('./RedditSearch.js');
 
 app.get('/',function(req,res){
     
-    res.render('MainPage.ejs',searchData);
+    res.render('MainPage.ejs');
 
 });
 
