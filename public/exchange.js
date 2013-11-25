@@ -1,8 +1,3 @@
-var myData = {
-    name : "Joshua Lucier",
-    rating: "10/10"
-
-};
 full = 0;
 if (localStorage["lastFive"]){
     $("#last5").text(localStorage["lastFive"]);
