@@ -8,25 +8,10 @@ var restler = require('restler');
 	TODO: make it aware of what to do when it doesn't get anything back
 
 */
-
-function getSearchJSON(req){
-	var url = "http://json.reddit.com/search?q=" 
-		+ req 
-		+ "&restrict_sr=off&sort=relevance&t=all";
-	var jace = new array(5);
-    console.log("making reddit query");
-	restler.get(url).on('complete',function(tapkek){
-		for(var i = 0; i < 5; i++){
-			jace[i] = tapkek.data.children[i].data;
-        }
-	});
-	console.log("completed reddit query");
-	return jace;
-}
 //getSearchJSON("maobama");
                         
-app.post('/redditgrab', function(req, res){
-
+app.post('/redditgrab', function(req, res){    
+    
     var query = {
 		hash: req.body.SampleHash,
         oldest: req.body.oldest,
@@ -39,7 +24,17 @@ app.post('/redditgrab', function(req, res){
 	};
     
 var redditReturn = { redditArray: [] };
-redditReturn.redditArray = getSearchJSON(query.hash);
-res.json(redditReturn);
 
+    var url = "http://json.reddit.com/search?q="+ encodeURIComponent(req) + "&restrict_sr=off&sort=relevance&t=all";
+	var jace = [];
+    console.log("making reddit query");
+	restler.get(url).on('complete',function(tapkek){
+		for(var i = 0; i < 5; i++){
+            console.log(tapkek.data.children);
+			jace[i] = tapkek.data.children[i].data;
+        }
+      redditReturn.redditArray = jace;
+        console.log("completed reddit query");
+	   res.json(redditReturn);
+    });
 });
