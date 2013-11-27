@@ -1,0 +1,99 @@
+
+/* Author: Matthew Demas
+ * Project Name: Mobile Web App
+ * Related Files: app.html, app.css (this file)
+ * Date Created: 2013-11-4
+ * Last Modified: 2013-11-19
+ */
+
+body
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: rgb(255,255,255);
+    }
+
+div.container
+    {
+        position: relative;
+        width: 400px;
+        margin: 5px auto;
+        background-color: rgb(185,230,255);
+        border: 2px solid rgb(180,180,180);
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px rgb(80,80,80);
+        color: black;
+        font-family: arial, sans-serif;
+        font-size: 10pt;
+        font-style: none;
+        line-height: 35px;
+    }
+
+table
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+div.form
+    {
+        position: relative;
+        width: 350px;
+        margin: 5px auto;
+        background-color: rgb(255,255,255);
+        border: 2px solid rgb(180,180,180);
+        border-radius: 10px;
+        color: black;
+        font-family: arial, sans-serif;
+        font-size: 10pt;
+        font-style: none;
+    }
+
+td.headings
+    {
+        /* <http://www.w3.org/wiki/CSS/Properties/text-align>
+         * left, right, center, justify, inherit
+         */
+        text-align: right;
+        /* <http://www.w3.org/wiki/CSS/Properties/vertical-align>
+         * baseline, sub, super, top, text-top, middle,
+         * bottom, text-bottom, length, or a value in percentage
+         */
+        vertical-align: text-top;
+    }
+
+div.submit
+    {
+        text-align: center;
+    }
+
+div.result
+    {
+        position: relative;
+        width: 350px;
+        margin: 5px auto;
+        background-color: rgb(255,255,255);
+        border: 2px solid rgb(180,180,180);
+        border-radius: 10px;
+        color: black;
+        font-family: arial, sans-serif;
+        font-size: 10pt;
+        font-style: none;
+    }
+
+table.result
+    {
+        margin: 5px;
+        line-height: 14pt;
+    }
+
+
+
+
+
+
+
+

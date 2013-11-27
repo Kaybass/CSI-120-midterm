@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<!--
+ * Author: Matthew Demas
+ * Project Name: Mobile Web App
+ * Related Files: app.html (this file), app.css
+ * Date Created: 2013-11-4
+ * Last Modified: 2013-11-19
+-->
+
+<html>
+<head>
+    <title>Mobile Web App</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+<div class="container">
+
+<div class="form">
+<form action="app.js">
+    <table>
+        <tr>
+            <td class="headings"><label for="name">Hash Tag 1: &nbsp;#</label></td>
+            <td><input type="text" name="SampleHash" id="SampleHash" placeholder="CampChamp" size="14" maxlength="140"/></td>
+        </tr>
+       <tr>
+            <td class="headings"><label for="name">Hash Tag 1: &nbsp;#</label></td>
+            <td><input type="text" name="SampleHash" id="SampleHash" placeholder="Burlington" size="14" maxlength="140"/></td>
+        </tr>
+       <tr>
+            <td class="headings"><label for="oldest">Oldest: </label></td>
+            <td><input type="date" name="oldest" id="oldest" required/></td>
+        </tr>
+       <tr>
+            <td class="headings"><label for="latest">Latest: </label></td>
+            <td><input type="date" name="latest" id="latest" required/></td>
+        </tr>
+       <tr>
+            <td class="headings"><label for="distance">Distance (mi): </label></td>
+            <td><input type="number" name="distance" id="distance" placeholder="100" min="1" max="3000" required/></td>
+        </tr>
+       <tr>
+            <td class="headings"><label for="sentiment">Sentiment: </label></td>
+            <td>
+                <select name="sentiment" id="sentiment">
+                    <option value="1">Highest</option>
+                    <option value="2">Lowest</option>
+                    <option value="3">All</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="latitude" name="latitude" value=0>
+    <input type="hidden" id="longitude" name="longitude" value=0>
+    <div class="submit"><input type="submit" id="submit" name="submit" value="Compare"><br><br></div>
+</form>
+</div>
+
+<div class="result">
+    <table class="result">
+        <tr>
+            <td><label for="name">@longestusername</label></td>
+            <td><label for="time">11/18/13 7:44pm</label></td>
+        </tr>
+       <tr>
+            <td><label for="pic" style="float: left;"><img src="pic.png" alt="twitter pic"></label></td>
+            <td><label for="tweet">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mini</label></td>
+        </tr>
+       <tr>
+            <td colspan="2"><label for="sentimentscore">Sentiment: 1000</label></td>
+        </tr>
+       <tr>
+            <td colspan="2"><label for="hashtag1">#CampChamp</label></td>
+        </tr>
+       <tr>
+            <td colspan="2"><label for="hashtag2">#Burlington</label></td>
+        </tr>
+    </table>
+</div>
+
+</div>
+</body>
+</html>
