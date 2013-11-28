@@ -43,11 +43,17 @@ div.container
 
 /* targeting ipad and below*/
 @media only screen and (max-device-width: 768px) and (orientation: portrait){
-    div.container { width: 100%; }
+    div.container { width: 100%; font-size: 2em;}
 }
     
-@media only screen and (max-device-width: 1024) and (orientation: landscape){
-    div.container { width: 100%; }
+@media only screen and (max-device-width: 1024px) and (orientation: landscape){
+    div.container { width: 100%; font-size: 2em; }
+}
+
+/*for demo in browser (kill this for production) */
+
+@media only screen and (max-width: 1024px) and (orientation: landscape){
+    div.container { width: 100%; font-size: 2em; }
 }
 
 table
@@ -125,11 +131,18 @@ table.result
     
 }
 
-#topTen
+#searchHistory li
 {
-    width: 30%; 
+   display: inline;
+    padding-right: 1em;
 }
 
+h1 {
+    color: black;
+    font-family: kashuan, arial, sans-serif;
+    font-size: 3em;
+    font-style: none;   
+}
 
 
 
