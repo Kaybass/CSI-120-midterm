@@ -42,45 +42,36 @@
 <li>Item Five</li>
 </ul></div>
 </div>
-<div class="form">
+<div>
 <form action="app.js">
-    <table>
-        <tr>
-            <td class="headings"><label for="name">Hash Tag 1: &nbsp;#</label></td>
-            <td><input type="text" name="SampleHash" id="SampleHash" placeholder="CampChamp" size="14" maxlength="140"/></td>
-        </tr>
-       <tr>
-            <td class="headings"><label for="name">Hash Tag 1: &nbsp;#</label></td>
-            <td><input type="text" name="SampleHash" id="SampleHash" placeholder="Burlington" size="14" maxlength="140"/></td>
-        </tr>
-       <tr>
-            <td class="headings"><label for="oldest">Oldest: </label></td>
-            <td><input type="date" name="oldest" id="oldest" required/></td>
-        </tr>
-       <tr>
-            <td class="headings"><label for="latest">Latest: </label></td>
-            <td><input type="date" name="latest" id="latest" required/></td>
-        </tr>
-       <tr>
-            <td class="headings"><label for="distance">Distance (mi): </label></td>
-            <td><input type="number" name="distance" id="distance" placeholder="100" min="1" max="3000" required/></td>
-        </tr>
-       <tr>
-            <td class="headings"><label for="sentiment">Sentiment: </label></td>
-            <td>
-                <select name="sentiment" id="sentiment">
-                    <option value="1">Highest</option>
-                    <option value="2">Lowest</option>
-                    <option value="3">All</option>
-                </select>
-            </td>
-        </tr>
-    </table>
+    <div class="form">
+        <label for="name">Hash Tag 1: &nbsp;#</label>
+        <input type="text" name="SampleHash" id="SampleHash" placeholder="
+CampChamp" size="14" maxlength="140"/>
+        <label for="name">Hash Tag 2: &nbsp;#</label>
+        <input type="text" name="SampleHash" id="SampleHash" placeholder="
+Burlington" size="14" maxlength="140"/>
+        <label for="oldest">Oldest: </label>
+        <input type="date" name="oldest" id="oldest" required/>
+        <label for="latest">Latest: </label>
+        <input type="date" name="latest" id="latest" required/>
+        <label for="distance">Distance (mi): </label>
+        <input type="number" name="distance" id="distance" placeholder="100" 
+min="1" max="3000" required/>
+        <label for="sentiment">Sentiment: </label>
+        <div>
+            <select name="sentiment" id="sentiment">
+                <option value="1">Highest</option>
+                <option value="2">Lowest</option>
+                <option value="3">All</option>
+            </select>
+        </div>
+    </div>
     <input type="hidden" id="latitude" name="latitude" value=0>
     <input type="hidden" id="longitude" name="longitude" value=0>
     <div class="submit"><input type="submit" id="submit" name="submit" value="Compare"><br><br></div>
 </form>
-</div>
+</div class="INPUT">
 
 <div class="result">
     <table class="result">

@@ -1,14 +1,4 @@
 var restler = require('restler');
-
-/*
-
-	returns an array of JSONs of the data
-	of the first five responses from the
-	search query
-	TODO: make it aware of what to do when it doesn't get anything back
-
-*/
-//getSearchJSON("maobama");
                         
 app.post('/redditgrab', function(req, res){    
     
