@@ -144,6 +144,19 @@ h1 {
     font-style: none;   
 }
 
+div.form{
+  overflow:hidden;
+}
+div.form label{
+  width:160px;
+  display:block;
+  float:left;
+  text-align:left;
+}
+div.form .input{
+  margin-left:4px;
+  float:left;
+}
 
 
 
