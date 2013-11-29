@@ -11,7 +11,6 @@
     src: url('kaushanscript-regular.otf');
     font-weight: normal;
     font-style: normal;
-
 }
 
 
@@ -52,7 +51,7 @@ div.container
 
 /*for demo in browser (kill this for production) */
 
-@media only screen and (max-width: 1024px) and (orientation: landscape){
+@media only screen and (max-width: 1024px){
     div.container { width: 100%; font-size: 2em; }
 }
 
@@ -137,11 +136,12 @@ table.result
     padding-right: 1em;
 }
 
-h1 {
+#title {
     color: black;
     font-family: kashuan, arial, sans-serif;
-    font-size: 3em;
-    font-style: none;   
+    font-size: 1em;
+    font-style: normal;
+    line-height: 130%;
 }
 
 
