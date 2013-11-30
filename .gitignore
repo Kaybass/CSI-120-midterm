@@ -11,5 +11,6 @@ pids
 logs
 results
 *.db
+twitter.db
 npm-debug.log
 node_modules
