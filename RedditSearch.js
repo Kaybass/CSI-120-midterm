@@ -20,6 +20,7 @@ var redditReturn = { redditArray: [] };
 	var jace = [];
     console.log("making reddit query");
 	restler.get(url).on('complete',function(tapkek){
+        if(tapkek.data){
 		for(var i = 0; i < 5; i++){
             console.log(tapkek.data.children);
 			jace[i] = tapkek.data.children[i].data;
@@ -27,5 +28,9 @@ var redditReturn = { redditArray: [] };
       redditReturn.redditArray = jace;
         console.log("completed reddit query");
 	   res.json(redditReturn);
+        } else {
+            redditReturn.error = "No reddit activity";
+            res.json(redditReturn);
+        }
     });
 });

@@ -28,9 +28,11 @@ db.serialize(function(){
     db.run("insert into searches(ID,QUERY,TIMESTAMP) values(null,\""+query.hash+"\",\""+Date()+"\")",function(err,lastid,changes){
             console.log(err,changes);
     });
+    if(query.hash2){
     db.run("insert into searches(ID,QUERY,TIMESTAMP) values(null,\""+query.hash2+"\",\""+Date()+"\")",function(err,lastid,changes){
             console.log(err,changes);
     });
+    }
 });
 }
 

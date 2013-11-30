@@ -13,15 +13,25 @@ function SubmitPosition(pos){
                         full = i;
                     }
               }
-              if(full==4){
+              if(full > 3){
                     lastFive.shift();
                     full=3;
+                    if($("#SampleHash2").val().length > 0){
+                        lastFive.shift();
+                        full=2;
+                    }
                }
-              lastFive[full+1]=$("#SampleHash").val()
+              lastFive[full+1]=$("#SampleHash").val();
+              if($("#SampleHash2").val().length > 0){
+                lastFive[full+2]=$("#SampleHash2").val();
+              }
               localStorage["lastFive"]=JSON.stringify(lastFive);
             } else {
                 lastFive=[];
                 lastFive[0]=$("#SampleHash").val();
+                if($("#SampleHash2").val().length > 0){
+                    lastFive[1]=$("#SampleHash2").val();
+                }
                 localStorage["lastFive"]=JSON.stringify(lastFive);
             }
           $("#last5").text(localStorage["lastFive"]);
