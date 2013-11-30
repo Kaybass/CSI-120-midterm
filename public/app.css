@@ -192,15 +192,13 @@ img
 
 /* targeting ipad and below*/
 @media only screen and (max-device-width: 768px) and (orientation: portrait){
-    div.container { width: 100%; font-size: 2em;}
+    div.container { max-width: 100%; font-size: 2em;}
+    div form input, select { height: 5em; width: 10em; font-size: 1em; }
 }
     
 @media only screen and (max-device-width: 1024px) and (orientation: landscape){
-    div.container { width: 100%; font-size: 2em; }
+    div.container { max-width: 100%; font-size: 2em; }
+    div form input, select { height: 5em; width: 10em; font-size: 1em; }
 }
 
 /*for demo in browser (kill this for production) */
-
-@media only screen and (max-width: 1024px){
-    div.container { width: 100%; font-size: 2em; }
-}
