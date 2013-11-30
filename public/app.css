@@ -27,7 +27,9 @@ body
 div.container
     {
         position: relative;
-        width: 400px; /* keep this */
+        width: 100%;
+        max-width: 400px;
+        min-width: 320px; /* Must be 40px larger than div.form to show the blue bordering container properly */
         margin: 5px auto;
         background-color: rgb(185,230,255);
         border: 2px solid rgb(180,180,180);
@@ -35,8 +37,8 @@ div.container
         box-shadow: 3px 3px 5px rgb(80,80,80);
         color: black;
         font-family: arial, sans-serif;
-        font-size: 1em;
-        font-style: none;
+        font-size: .8em;
+        font-style: normal;
         line-height: 35px;
     }
 
@@ -55,37 +57,45 @@ div.container
     div.container { width: 100%; font-size: 2em; }
 }
 
-table
-    {
-        margin-left: auto;
-        margin-right: auto;
-    }
 
-div.form
+div.container
     {
         position: relative;
-        width:85%;
+        width: 100%;
+        max-width: 400px;
+        min-width: 320px; /* Must be 40px larger than div.form to show the blue bordering container properly */
+        margin: 5px auto;
+        background-color: rgb(185,230,255);
+        border: 2px solid rgb(180,180,180);
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px rgb(80,80,80);
+        color: black;
+        font-family: arial, sans-serif;
+        font-size: .8em;
+        font-style: normal;
+        line-height: 35px;
+    }
+
+div.form, div.resultcontainer
+    {
+        position: relative;
+        width: 87.5%; /* obtained by dividing 350px/400px of div.container width */
+        min-width: 280px;
         margin: 5px auto;
         background-color: rgb(255,255,255);
         border: 2px solid rgb(180,180,180);
         border-radius: 10px;
         color: black;
         font-family: arial, sans-serif;
-        font-size: 10pt;
-        font-style: none;
+        font-size: 1em;
+        font-style: normal;
+        padding: 10px 0px 10px 0px;
+        line-height: 275%;
     }
 
-td.headings
+div.resultcontainer /* Mostly same attribute values as div.form */
     {
-        /* <http://www.w3.org/wiki/CSS/Properties/text-align>
-         * left, right, center, justify, inherit
-         */
-        text-align: right;
-        /* <http://www.w3.org/wiki/CSS/Properties/vertical-align>
-         * baseline, sub, super, top, text-top, middle,
-         * bottom, text-bottom, length, or a value in percentage
-         */
-        vertical-align: text-top;
+        line-height: 160%;
     }
 
 div.submit
@@ -159,6 +169,40 @@ div.form .input{
   float:left;
 }
 
+label
+    {
+        float: left;
+        width: 37.5%; /* obtained by dividing 150px/350px div.form width */
+        clear: left;
+        text-align: right;
+        padding-right: 5px;
+    }
+
+div.submit
+    {
+        margin-left: 38.571%; /* obtained by dividing 135px/350px of div.form width */
+    }
+
+div.resultleft
+    {
+        float: left;
+        width: 38.571%; /* obtained by dividing 135px/350px of div.resultcontainer width */
+        clear: left;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+div.tweet
+    {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+img
+    {
+        width: 48px;
+        height: 48px;
+    }
 
 
 
