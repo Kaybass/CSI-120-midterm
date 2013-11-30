@@ -199,6 +199,4 @@ img
 @media only screen and (max-device-width: 1024px) and (orientation: landscape){
     div.container { max-width: 100%; font-size: 2em; }
     div form input, select { height: 5em; width: 10em; font-size: 1em; }
-}
-
-/*for demo in browser (kill this for production) */
+} 
