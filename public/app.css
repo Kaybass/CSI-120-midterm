@@ -11,7 +11,6 @@
     src: url('kaushanscript-regular.otf');
     font-weight: normal;
     font-style: normal;
-
 }
 
 
@@ -52,7 +51,7 @@ div.container
 
 /*for demo in browser (kill this for production) */
 
-@media only screen and (max-width: 1024px) and (orientation: landscape){
+@media only screen and (max-width: 1024px){
     div.container { width: 100%; font-size: 2em; }
 }
 
@@ -65,7 +64,7 @@ table
 div.form
     {
         position: relative;
-        width: 350px;
+        width:85%;
         margin: 5px auto;
         background-color: rgb(255,255,255);
         border: 2px solid rgb(180,180,180);
@@ -97,7 +96,7 @@ div.submit
 div.result
     {
         position: relative;
-        width: 350px;
+        width: 85%;
         margin: 5px auto;
         background-color: rgb(255,255,255);
         border: 2px solid rgb(180,180,180);
@@ -137,21 +136,23 @@ table.result
     padding-right: 1em;
 }
 
-h1 {
+#title {
     color: black;
     font-family: kashuan, arial, sans-serif;
-    font-size: 3em;
-    font-style: none;   
+    font-size: 1em;
+    font-style: normal;
+    line-height: 130%;
 }
 
 div.form{
   overflow:hidden;
 }
 div.form label{
-  width:160px;
+  width: 30%;
   display:block;
   float:left;
-  text-align:left;
+  text-align: right;
+  font-family: kashuan;
 }
 div.form .input{
   margin-left:4px;

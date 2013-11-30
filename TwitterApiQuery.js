@@ -12,6 +12,7 @@ var twitter = new Twitter(config)
 
 var query = {
 		hash: req.body.SampleHash,
+        hash2: req.body.SampleHash2,
         oldest: req.body.oldest,
         latest: req.body.latest,
         number: req.body.number,
@@ -27,17 +28,20 @@ db.serialize(function(){
     db.run("insert into searches(ID,QUERY,TIMESTAMP) values(null,\""+query.hash+"\",\""+Date()+"\")",function(err,lastid,changes){
             console.log(err,changes);
     });
+    db.run("insert into searches(ID,QUERY,TIMESTAMP) values(null,\""+query.hash2+"\",\""+Date()+"\")",function(err,lastid,changes){
+            console.log(err,changes);
+    });
 });
 }
 
     
 //query string for get request    
 var queryStringPath = "https://api.twitter.com/1.1/search/tweets.json"
-var queryString = "?q="+encodeURIComponent(query.hash)+"&geocode="+encodeURIComponent(query.latitude)+","+encodeURIComponent(query.longitude)+","+encodeURIComponent(query.distance)+"&count="+encodeURIComponent(query.number)+"&until="+encodeURIComponent(query.latest)+"&since="+encodeURIComponent(query.oldest);
+var queryString = "?q="+encodeURIComponent(query.hash)+" "+encodeURIComponent(query.hash2)+"&geocode="+encodeURIComponent(query.latitude)+","+encodeURIComponent(query.longitude)+","+encodeURIComponent(query.distance)+"&count="+encodeURIComponent(query.number)+"&until="+encodeURIComponent(query.latest)+"&since="+encodeURIComponent(query.oldest);
 
 //mtwitter api attempt
 params = {
-    q: query.hash,
+    q: query.hash+' '+query.hash2,
     geocode: query.latitude+','+query.longitude+','+query.distance,
     since: query.oldest,
     until: query.latest,

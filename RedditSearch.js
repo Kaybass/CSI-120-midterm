@@ -4,6 +4,7 @@ app.post('/redditgrab', function(req, res){
     
     var query = {
 		hash: req.body.SampleHash,
+        hash2: req.body.SampleHash2,
         oldest: req.body.oldest,
         latest: req.body.latest,
         number: req.body.number,
@@ -15,7 +16,7 @@ app.post('/redditgrab', function(req, res){
     
 var redditReturn = { redditArray: [] };
 
-    var url = "http://json.reddit.com/search?q="+ encodeURIComponent(req) + "&restrict_sr=off&sort=relevance&t=all";
+    var url = "http://json.reddit.com/search?q="+ encodeURIComponent(query.hash + ' ' + query.hash2) + "&restrict_sr=off&sort=relevance&t=all";
 	var jace = [];
     console.log("making reddit query");
 	restler.get(url).on('complete',function(tapkek){

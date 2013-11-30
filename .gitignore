@@ -10,6 +10,6 @@ AuthenticationSettings.js
 pids
 logs
 results
-
+*.db
 npm-debug.log
 node_modules

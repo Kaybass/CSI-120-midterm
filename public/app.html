@@ -16,7 +16,7 @@
 
 <body>
 <div class="container">
-<div id="title"><h1>Media Query 1.0</h1></div>
+<div id="title"><h1>Social Query 1.0</h1></div>
 <div id="searchHistory">
 <div id="topTen">
 <div>Top Ten Searches of All Time</div>
@@ -43,35 +43,32 @@
 </ul></div>
 </div>
 <div>
-<form action="app.js">
+<form>
     <div class="form">
         <label for="name">Hash Tag 1: &nbsp;#</label>
         <input type="text" name="SampleHash" id="SampleHash" placeholder="
-CampChamp" size="14" maxlength="140"/>
+CampChamp" size="14" maxlength="140"/><br/>
         <label for="name">Hash Tag 2: &nbsp;#</label>
-        <input type="text" name="SampleHash" id="SampleHash" placeholder="
-Burlington" size="14" maxlength="140"/>
+        <input type="text" name="SampleHash2" id="SampleHash2" placeholder="
+Burlington" size="14" maxlength="140"/><br/>
         <label for="oldest">Oldest: </label>
-        <input type="date" name="oldest" id="oldest" required/>
+        <input type="date" name="oldest" id="oldest" required/><br/>
         <label for="latest">Latest: </label>
-        <input type="date" name="latest" id="latest" required/>
+        <input type="date" name="latest" id="latest" required/><br/>
         <label for="distance">Distance (mi): </label>
         <input type="number" name="distance" id="distance" placeholder="100" 
-min="1" max="3000" required/>
-        <label for="sentiment">Sentiment: </label>
-        <div>
-            <select name="sentiment" id="sentiment">
+min="1" max="3000" required/><br/>
+        <label for="sentiment">Sentiment Order: </label>
+            <select name="order" id="sentiment">
                 <option value="1">Highest</option>
                 <option value="2">Lowest</option>
-                <option value="3">All</option>
             </select>
-        </div>
-    </div>
     <input type="hidden" id="latitude" name="latitude" value=0>
     <input type="hidden" id="longitude" name="longitude" value=0>
-    <div class="submit"><input type="submit" id="submit" name="submit" value="Compare"><br><br></div>
-</form>
-</div class="INPUT">
+    </form>
+    <div class="submit"><input type="submit" id="submit" name="submit" value="Compare"></div>
+</div>
+</div>
 
 <div class="result">
     <table class="result">
