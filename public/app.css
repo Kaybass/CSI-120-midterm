@@ -1,18 +1,10 @@
 
-/* Author: Matthew Demas
+/* Author: Matthew Demas, Josh Lucier, Alex Apmann
  * Project Name: Mobile Web App
  * Related Files: app.html, app.css (this file)
  * Date Created: 2013-11-4
- * Last Modified: 2013-11-19
+ * Last Modified: 2013-11-30
  */
-
-@font-face {
-    font-family: 'kashuan';
-    src: url('kaushanscript-regular.otf');
-    font-weight: normal;
-    font-style: normal;
-}
-
 
 body
     {
@@ -31,6 +23,7 @@ div.container
         max-width: 400px;
         min-width: 320px; /* Must be 40px larger than div.form to show the blue bordering container properly */
         margin: 5px auto;
+        padding-bottom: 15px;
         background-color: rgb(185,230,255);
         border: 2px solid rgb(180,180,180);
         border-radius: 10px;
@@ -42,26 +35,16 @@ div.container
         line-height: 35px;
     }
 
+/* targeting ipad and below*/
+@media only screen and (max-device-width: 768px) and (orientation: portrait){
+    div.container { width: 100%; font-size: 2em;}
+}
+    
+@media only screen and (max-device-width: 1024px) and (orientation: landscape){
+    div.container { width: 100%; font-size: 2em; }
+}
 
-div.container
-    {
-        position: relative;
-        width: 100%;
-        max-width: 400px;
-        min-width: 320px; /* Must be 40px larger than div.form to show the blue bordering container properly */
-        margin: 5px auto;
-        background-color: rgb(185,230,255);
-        border: 2px solid rgb(180,180,180);
-        border-radius: 10px;
-        box-shadow: 3px 3px 5px rgb(80,80,80);
-        color: black;
-        font-family: arial, sans-serif;
-        font-size: .8em;
-        font-style: normal;
-        line-height: 35px;
-    }
-
-div.form, div.resultcontainer
+div.form, div.resultcontainer, #redditContainer
     {
         position: relative;
         width: 87.5%; /* obtained by dividing 350px/400px of div.container width */
@@ -85,74 +68,8 @@ div.resultcontainer /* Mostly same attribute values as div.form */
 
 div.submit
     {
-        text-align: center;
+        margin-left: 38.571%; /* obtained by dividing 135px/350px of div.form width */
     }
-
-div.result
-    {
-        position: relative;
-        width: 85%;
-        margin: 5px auto;
-        background-color: rgb(255,255,255);
-        border: 2px solid rgb(180,180,180);
-        border-radius: 10px;
-        color: black;
-        font-family: arial, sans-serif;
-        font-size: 10pt;
-        font-style: none;
-    }
-
-table.result
-    {
-        margin: 5px;
-        line-height: 14pt;
-    }
-
-#searchHistory
-{
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: rgb(255,255,255);
-    border: 2px solid rgb(180,180,180);
-    border-radius: 10px;
-    color: black;
-    font-family: kashuan, arial, sans-serif;
-    font-size: 1em;
-    font-style: none;
-    
-}
-
-#searchHistory li
-{
-   display: inline;
-    padding-right: 1em;
-}
-
-#title {
-    color: black;
-    font-family: kashuan, arial, sans-serif;
-    font-size: 1em;
-    font-style: normal;
-    line-height: 130%;
-}
-
-div.form{
-  overflow:hidden;
-}
-div.form label{
-  width: 30%;
-  display:block;
-  float:left;
-  text-align: right;
-  font-family: kashuan;
-}
-div.form .input{
-  margin-left:4px;
-  float:left;
-}
 
 label
     {
@@ -161,11 +78,6 @@ label
         clear: left;
         text-align: right;
         padding-right: 5px;
-    }
-
-div.submit
-    {
-        margin-left: 38.571%; /* obtained by dividing 135px/350px of div.form width */
     }
 
 div.resultleft
@@ -190,13 +102,54 @@ img
     }
 
 
-/* targeting ipad and below*/
-@media only screen and (max-device-width: 768px) and (orientation: portrait){
-    div.container { max-width: 100%; font-size: 2em;}
-    div form input, select { height: 5em; width: 10em; font-size: 1em; }
-}
-    
-@media only screen and (max-device-width: 1024px) and (orientation: landscape){
-    div.container { max-width: 100%; font-size: 2em; }
-    div form input, select { height: 5em; width: 10em; font-size: 1em; }
-} 
+#searchHistory
+    {
+        width: 87.5%; /* obtained by dividing 350px/400px of div.container width */
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        background-color: rgb(255,255,255);
+        border: 2px solid rgb(180,180,180);
+        border-radius: 10px;
+        color: black;
+        font-family: arial, sans-serif;
+        font-size: 1em;
+        font-style: inherit;    
+    }
+
+#searchHistory li
+    {
+        display: inline-block;
+        padding-right: 1em;
+    }
+
+#title
+    {
+        color: black;
+        font-family: arial, sans-serif;
+        font-size: 1em;
+        font-style: normal;
+        line-height: 130%;
+    }
+
+h4.headings, h5
+    {
+        padding-left: 5px;
+    }
+h5
+    {
+        margin: 0;
+    }
+
+h1
+    {
+        margin-left: 26.5%;
+    }
+
+div.credit
+    {
+        margin: auto;
+        width: 87.5%;
+        line-height:120%;
+    }
