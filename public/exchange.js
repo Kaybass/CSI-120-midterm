@@ -52,9 +52,9 @@ function SubmitPosition(pos){
                         for(i=0;i<data.myTweetArray.length;i++){
                             hashTagText = "";
                             for(b=0;b<data.myTweetArray[i].hashTags.length;b++){
-                                hashTagText = hashTagText+'<div><div class="tweet">'+data.myTweetArray[i].hashTags[b]+'</div></div>';
+                                hashTagText = hashTagText+'<div><div class="tweet">#'+data.myTweetArray[i].hashTags[b].text+'</div></div>';
                             }
-                            $("#tweets").append('<div class="resultcontainer"><div><div class="resultleft">'+data.myTweetArray[i].screenName+'</div><div>'+data.myTweetArray[i].date+'</div></div><div><div class="resultleft"><img src="'+data.myTweetArray[i].profileImg+'" alt="twitter pic"></div><div class="tweet">'+data.myTweetArray[i].message+'</div></div><div><div class="tweet">Sentiment: '+data.myTweetArray[i].sentiment+'</div></div>'+hashTagText);
+                            $("#tweets").append('<div class="resultcontainer"><div><div class="resultleft">'+data.myTweetArray[i].screenName+'</div><div>'+data.myTweetArray[i].date+'</div></div><div><div class="resultleft"><img src="'+data.myTweetArray[i].profileImg+'" alt="twitter pic"></div><div class="tweet">'+data.myTweetArray[i].message+'</div></div><div><div class="tweet">Sentiment: '+data.myTweetArray[i].sentiment.score+'</div></div>'+hashTagText);
                         }
                     }
                 },

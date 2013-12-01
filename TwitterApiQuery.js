@@ -21,8 +21,8 @@ var query = {
         longitude: req.body.longitude,
         order: req.body.order
 	};
-console.log(query.hash);
-console.log(req.body.SampleHash);
+console.log('hash='+query.hash);
+console.log('SampleHash='+req.body.SampleHash);
 //SQlite3
 if(query.hash){
 db.serialize(function(){
@@ -58,7 +58,7 @@ application_only: true
 });
 
 twitter.get('search/tweets',params,function(err, myTweets) {
-  console.log(err, myTweets);
+  console.log(err, 'myTweets ='+myTweets);
     var myQuery = {
         myTweetArray: [], sentimentAvg : 0  
     };
@@ -71,7 +71,7 @@ twitter.get('search/tweets',params,function(err, myTweets) {
     } else {
         myQuery = { error: "No tweets" };
     }
-    
+    console.log(myQuery);
     function sortFunction(a,b){
         if (query.order==2) {
             return a.sentiment.score - b.sentiment.score;
@@ -85,7 +85,7 @@ twitter.get('search/tweets',params,function(err, myTweets) {
     myQuery.myTweetArray = myQuery.myTweetArray.sort(sortFunction);
     }
     
-
+    //res.json(myTweets);
     res.json(myQuery);
 });
 
