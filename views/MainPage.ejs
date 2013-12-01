@@ -1,33 +1,87 @@
 <!Doctype html>
 <html>
 <head>
+<title>Social Query 1.0</title>
+<link rel="stylesheet" type="text/css" href="app.css">
 <script type="application/javascript" src="http://code.jquery.com/jquery.min.js"></script>
   
     
 </head>
 <body>
-<div id="top10"></div><br>
-<div id="last5"></div><br>
-Yo
-<button id="submit">Results!</button>  
-<form id="myForm" method="post">
-<label for="SampleHash">Hash Tag:</label><input type="text" id="SampleHash" name="SampleHash" value="#dude"><br>
-<label for="SampleHash2">Hash Tag 2:</label><input type="text" id="SampleHash2" name="SampleHash2" value="#dude"><br>
-<label for="oldest">Oldest:</label><input type="date" id="oldest" name="oldest"><br>
-<label for="latest">Latest:</label><input type="date" id="latest" name="latest"><br>
-<label for="number">Number:</label><input type="range" id="number" name="number" value=10 min="0" max="100"><span id="rangeNum">10</span><br>
-<label for="distance">Distance(mi):</label><input type="number" id="distance" name="distance" value="10"><br>
-Sentiment: <select name="order" id="order" required>
-    <option value = 1>Descending</option>
-    <option value = 2>Ascending</option>
-    </select>
-<input type="hidden" id="latitude" name="latitude" value=0>
-<input type="hidden" id="longitude" name="longitude" value=0>
-</form>
-<div id="tweets">Loading Tweets...</div>
-<div id="reddit">Loading Reddit...</div>    
-<script type=text/javascript src='exchange.js'>
+<div class="container">
 
+    <div id="title"><h1>Social Query 1.0</h1></div>
+    <div class="credit"><h5>Developed by Alexander Apmann, Matthew Demas, and Joshua Lucier of Champlain College</h5></div>
+    
+
+    <div id="searchHistory">
+        <div id="topTen"></div>
+        <div id="lastFive"></div>
+    </div>
+
+
+<div class="form">
+<form id="myForm">
+    <div>
+        <label for="name">Hash Tag 1:</label>
+        <input type="text" name="SampleHash" id="SampleHash" placeholder="#CampChamp" size="14" maxlength="140"/>
+    </div>
+    
+    <div>
+        <label for="name">Hash Tag 2:</label>
+        <input type="text" name="SampleHash2" id="SampleHash2" placeholder="#Burlington" size="14" maxlength="140"/>
+    </div>
+    
+    <div>
+        <label for="oldest">Oldest:</label>
+        <input type="date" name="oldest" id="oldest" required/>
+    </div>
+    
+    <div>
+        <label for="latest">Latest:</label>
+        <input type="date" name="latest" id="latest" required/>
+    </div>
+    
+    <div>
+        <label for="distance">Distance (mi):</label>
+        <input type="number" name="distance" id="distance" placeholder="100" min="1" max="4000" required/>
+    </div>
+    
+    <div>
+        <label for="distance">Count</label>:</label>
+        <input type="number" name="number" id="number" placeholder="10" min="1" max="100" required/>
+    </div>
+    
+    <div>
+        <label for="sentiment">Sentiment:</label>
+        <select name="order" id="sentiment">
+            <option value="1">Highest</option>
+            <option value="2">Lowest</option>
+        </select>
+    </div>
+    
+    <input type="hidden" id="latitude" name="latitude" value=0>
+    <input type="hidden" id="longitude" name="longitude" value=0>
+    
+    </div>
+</form>
+    <div class="submit"><input type="submit" id="submit" value="Submit">
+</div>
+
+<div id="tweets">
+    
+    
+</div>   
+    
+    
+
+<div id="redditContainer">
+    <h5>Related Reddit Threads</h5><div id="reddit"></div>
+</div>    
+    
+    
+</div>   
+<script type=text/javascript src='exchange.js'>
 </script>
 </body>
 </html>

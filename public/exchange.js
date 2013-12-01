@@ -1,9 +1,4 @@
 full = 0;
-if (localStorage["lastFive"]){
-    $("#last5").text(localStorage["lastFive"]);
-} else {
-    $("#last5").text("No entries yet...");
-}
 
 function SubmitPosition(pos){
           if (localStorage["lastFive"]){
@@ -34,7 +29,11 @@ function SubmitPosition(pos){
                 }
                 localStorage["lastFive"]=JSON.stringify(lastFive);
             }
-          $("#last5").text(localStorage["lastFive"]);
+            $("#lastFive").html('<h4 class="headings">Your Last Five Searches</h4><ul></ul>');
+    lastFive = JSON.parse(localStorage["lastFive"]);
+            for(i=0;i<lastFive.length;i++){
+                $("#lastFive ul").append('<li>'+lastFive[i]+'</li>');
+            }
           $("#latitude").val(pos.coords.latitude);
           $("#longitude").val(pos.coords.longitude);
           var mydata = $("#myForm").serialize();
@@ -46,12 +45,16 @@ function SubmitPosition(pos){
                 success: function(data) {
                     //need format data json object into output
                     console.log(data);
-                    $("#tweets").html("Here's Your tweets... <br>");
+                    $("#tweets").html("Loading Tweets....");
                     if(data.error){
                         $("#tweets").append(data.error);
                     } else{
                         for(i=0;i<data.myTweetArray.length;i++){
-                            $("#tweets").append(data.myTweetArray[i].message+"<br>");
+                            hashTagText = "";
+                            for(b=0;b<data.myTweetArray[i].hashTags.length;b++){
+                                hashTagText = hashTagText+'<div><div class="tweet">'+data.myTweetArray[i].hashTags[b]+'</div></div>';
+                            }
+                            $("#tweets").append('<div class="resultcontainer"><div><div class="resultleft">'+data.myTweetArray[i].screenName+'</div><div>'+data.myTweetArray[i].date+'</div></div><div><div class="resultleft"><img src="'+data.myTweetArray[i].profileImg+'" alt="twitter pic"></div><div class="tweet">'+data.myTweetArray[i].message+'</div></div><div><div class="tweet">Sentiment: '+data.myTweetArray[i].sentiment+'</div></div>'+hashTagText);
                         }
                     }
                 },
@@ -68,12 +71,12 @@ function SubmitPosition(pos){
                 success: function(data) {
                     //need format data json object into output
                     console.log(data);
-                    $("#reddit").html("Here's Your reddit... <br>");
+                    $("#reddit").html("Loading Reddit...</br><ol></ol>");
                     if(data.error){
                         $("#reddit").append(data.error);
                     } else{
                         for(i=0;i<data.redditArray.length;i++){
-                            $("#reddit").append(data.redditArray[i].title+"<br>");
+                            $("#reddit ol").append('<li><a href="' + data.redditArray[i].url + '">'+data.redditArray[i].title +'</a></li>');
                         }
                     }
                 },
@@ -87,7 +90,21 @@ function SubmitPosition(pos){
         }
 
 $(document).ready(function() {
-    $("#top10").text("Loading top 10...");
+    if (localStorage["lastFive"]){
+    $("#lastFive").html('<h4 class="headings">Your Last Five Searches</h4><ul></ul>');
+    lastFive = JSON.parse(localStorage["lastFive"]);
+    for(i=0;i<lastFive.length;i++){
+        $("#lastFive ul").append('<li>'+lastFive[i]+'</li>');
+    }
+    } else {
+    $("#lastFive").text("No entries yet...");
+    }
+    
+    
+    
+    
+    
+    $("#topTen").html('<h4 class="headings"> Loading top 10... </h4>');
     $.ajax({
         url: '/topten',
                 type: "get",
@@ -95,7 +112,10 @@ $(document).ready(function() {
                 success: function(data) {
                     //need format data json object into output
                     console.log(data);
-                    $("#top10").text(data.topTen);
+                    $("#topTen").html('<h4 class="headings">Top Ten Searches of All Time</h4><ol></ol>');
+                    for(i=0;i<data.topTen.length;i++){
+                        $("#topTen ol").append('<li>'+(i+1)+'. '+data.topTen[i]+'</li>');
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log('error ' + textStatus + " " + errorThrown + ";");
@@ -109,8 +129,11 @@ $(document).ready(function() {
                 success: function(data) {
                     //need format data json object into output
                     console.log(data);
-                    $("#top10").text(data.topTen);
-                },
+                    $("#topTen").html('<h4 class="headings">Top Ten Searches of All Time</h4><ol></ol>');
+                    for(i=0;i<data.topTen.length;i++){
+                        $("#topTen ol").append('<li>'+(i+1)+'. '+data.topTen[i]+'</li>');
+                    }
+                    },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log('error ' + textStatus + " " + errorThrown + ";");
                 }

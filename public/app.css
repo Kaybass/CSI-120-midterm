@@ -35,15 +35,6 @@ div.container
         line-height: 35px;
     }
 
-/* targeting ipad and below*/
-@media only screen and (max-device-width: 768px) and (orientation: portrait){
-    div.container { width: 100%; font-size: 2em;}
-}
-    
-@media only screen and (max-device-width: 1024px) and (orientation: landscape){
-    div.container { width: 100%; font-size: 2em; }
-}
-
 div.form, div.resultcontainer, #redditContainer
     {
         position: relative;
@@ -153,3 +144,14 @@ div.credit
         width: 87.5%;
         line-height:120%;
     }
+
+
+/* targeting ipad and below*/
+@media only screen and (max-device-width: 768px) and (orientation: portrait){
+    div.container { max-width: 100%; font-size: 2em;}
+    
+}
+    
+@media only screen and (max-device-width: 1024px) and (orientation: landscape){
+    div.container { max-width: 100%; font-size: 2em; }
+}

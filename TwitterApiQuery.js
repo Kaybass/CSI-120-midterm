@@ -21,7 +21,8 @@ var query = {
         longitude: req.body.longitude,
         order: req.body.order
 	};
-    
+console.log(query.hash);
+console.log(req.body.SampleHash);
 //SQlite3
 if(query.hash){
 db.serialize(function(){
