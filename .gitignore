@@ -6,7 +6,6 @@ lib-cov
 *.out
 *.pid
 *.gz
-AuthenticationSettings.js
 pids
 logs
 results

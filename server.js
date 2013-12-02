@@ -7,7 +7,7 @@ app = express();
 analyze = require('Sentimental').analyze;
 Twitter = require('mtwitter');
 sqlite3 = require('sqlite3').verbose();
-
+var port = process.env.PORT || 3000;
 //encapsulate array of parameters
 passedParams = [];
 process.argv.forEach(function(val,index,array){
@@ -40,5 +40,5 @@ app.get('/',function(req,res){
 
 
 //seetwitterapi for ajax response
-var port = process.env.PORT || 5000;
+
 app.listen(port);
