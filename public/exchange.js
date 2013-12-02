@@ -45,10 +45,12 @@ function SubmitPosition(pos){
                 success: function(data) {
                     //need format data json object into output
                     console.log(data);
-                    $("#tweets").html("Loading Tweets....");
+                    $("#tweets").html('<div><h4 class="headers">Loading Tweets....</h4></div>');
                     if(data.error){
                         $("#tweets").append(data.error);
                     } else{
+                        $("#tweets").append('<div><h4 class="headers">Popularity:</h4><span id="bullet"></span>'+data.sentimentAvg+'</div>');
+                        $("#bullet").sparkline([-20,0,data.sentimentAvg,0,20],{type: "bullet", targetColor: "black", targetWidth: 10, performanceColor: "blue", rangeColors: ["red","green","yellow"]});
                         for(i=0;i<data.myTweetArray.length;i++){
                             hashTagText = "";
                             for(b=0;b<data.myTweetArray[i].hashTags.length;b++){
@@ -161,4 +163,5 @@ $(document).ready(function() {
     $("#number").mouseup(function(){
         $("#rangeNum").text($("#number").val());
     });
+    
 });
