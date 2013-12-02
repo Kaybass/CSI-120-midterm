@@ -10,7 +10,7 @@
     "knex": "latest",
     "sqlite3": "latest", 
     "Sentimental": "latest",
-    "restler": "latest",
+    "restler": "latest"
   },
   "engines": {
     "node": "0.10.13",
