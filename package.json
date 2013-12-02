@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-example",
+  "name": "socialQuery",
   "version": "0.0.1",
-  "main": "web.js",
+  "main": "server.js",
   "dependencies": {
     "express": "latest",
     "ejs": "latest",
