@@ -145,6 +145,26 @@ div.credit
         line-height:120%;
     }
 
+select, input,textarea {
+  border: solid 1px #888;
+  display: block;
+  font: normal 1.4em Arial;
+  max-width: 100% !important;
+  margin: 0.2em 0 !important;
+  padding: 0.1em 0 !important;
+  text-indent: 0 !important;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  width: 98% !important;
+  outline: none;
+  word-wrap: break-word;
+  word-wrap: break-all;
+  white-space: nowrap;
+  ms-box-sizing:content-box;
+  -moz-box-sizing:content-box;
+  -webkit-box-sizing:content-box;
+  box-sizing:content-box; 
+}
 
 /* targeting ipad and below*/
 @media only screen and (max-device-width: 768px) and (orientation: portrait){
