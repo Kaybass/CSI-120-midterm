@@ -7,7 +7,6 @@ app = express();
 analyze = require('Sentimental').analyze;
 Twitter = require('mtwitter');
 sqlite3 = require('sqlite3').verbose();
-sleep = require('sleep');
 
 //encapsulate array of parameters
 passedParams = [];
@@ -41,5 +40,5 @@ app.get('/',function(req,res){
 
 
 //seetwitterapi for ajax response
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 app.listen(port);
