@@ -12,7 +12,7 @@ sleep = require('sleep');
 //encapsulate array of parameters
 passedParams = [];
 process.argv.forEach(function(val,index,array){
-   console.log(index + ': ' + val);
+   //console.log(index + ': ' + val);
     passedParams[index] = val;
 });
 

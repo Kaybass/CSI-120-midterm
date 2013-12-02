@@ -38,7 +38,7 @@ function topTen(){
     i=0;
     dataArray = [];
     searchData.topTen[i]=modeString(searchData.allData);
-    console.log(searchData.allData);
+    //console.log(searchData.allData);
     dataArray = searchData.allData.filter(filterForString);
     for(i=1;i<10;i++){
         searchData.topTen[i]=modeString(dataArray);
@@ -48,10 +48,10 @@ function topTen(){
 }
 
 function foo(){
-       console.log(row.QUERY);
+       //console.log(row.QUERY);
        searchData.allData[i]=row.QUERY;
        i++;
-       console.log("The most common is:" + modeString(searchData.allData));   
+       //console.log("The most common is:" + modeString(searchData.allData));   
 }
 now = '';
 myRows=0;
@@ -84,9 +84,9 @@ db.serialize(function(){
 
 //console.log(searchData.topTen);
 setTimeout(function(){
-    console.log(searchData.topTen);
+    //console.log(searchData.topTen);
 app.get('/topten', function(req, res){
-    console.log("sending myTopTen");
+    //console.log("sending myTopTen");
     res.json(myTopTen);
 });
 },10000);
