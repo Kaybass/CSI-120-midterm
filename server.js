@@ -7,7 +7,6 @@ app = express();
 analyze = require('Sentimental').analyze;
 Twitter = require('mtwitter');
 sqlite3 = require('sqlite3').verbose();
-sleep = require('sleep');
 
 //encapsulate array of parameters
 passedParams = [];
