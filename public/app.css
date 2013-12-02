@@ -331,9 +331,13 @@ select, input,textarea {
 /* targeting ipad and below*/
 @media only screen and (max-device-width: 768px) and (orientation: portrait){
     div.container { max-width: 100%; font-size: 2em;}
+    input { line-height: 1em; font-size: 1em; size: auto; width: 7em ; height: 1.5em;}
+    select { line-height: 1em; font-size: 1em; size: auto; width: 7em ; height: 1.5em;}
     
 }
     
 @media only screen and (max-device-width: 1024px) and (orientation: landscape){
     div.container { max-width: 100%; font-size: 2em; }
+    input { line-height: 1em; font-size: 1em; size: auto; width: 7em ; height: 1.5em;}
+    select { line-height: 1em; font-size: 1em; size: auto; width: 7em ; height: 1.5em;}
 }
